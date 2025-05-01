@@ -43,7 +43,7 @@ Functional & Pathway Enrichment Analysis
      ↓
 Biological Insight and Hypothesis Generation
 
-
+```
 
 ### Step 1: Preprocessing & Normalization (Input Matrix)
 
