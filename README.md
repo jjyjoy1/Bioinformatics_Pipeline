@@ -1,30 +1,31 @@
-I created a generalized, matrix-based bioinformatics workflow that can indeed be summarized into a common ML/DL framework. Despite variations in specific datasets (RNA-seq, ChIP-seq, metagenomics, WGAS, eQTL), the fundamental computational approach for ML-driven biomedical analyses can be structured into a generalizable pipeline.
+## ML‑Driven Bioinformatics Toolkit (Overview)
 
-The comprehensive workflow contains the following 8 steps. 
+I have developed a versatile, reusable **Python module** that streamlines matrix‑based biomedical analyses (RNA‑seq, ChIP‑seq, metagenomics, eQTL, GWAS, etc.). The toolkit wraps each common computational task in a clean, object‑oriented API so that teams can drop the classes into any workflow, iterate quickly, and reproduce results easily.
 
-Raw data (matrix: samples × features)
-     ↓
-Normalization & Preprocessing
-     ↓
-Feature Selection (Statistical/LASSO/Tree-based)
-     ↓
-Dimensionality Reduction (PCA/t-SNE/UMAP/Autoencoder)
-     ↓
-Clustering (K-means/Hierarchical/DBSCAN)
-     └→ Unsupervised Analysis (biological interpretation)
-     ↓
-Supervised Analysis (Classification or Regression)
-     ├→ ML methods (RF, SVM, XGBoost)
-     └→ DL methods (CNN/RNN/Transformers)
-     ↓
-Model Evaluation & Hyperparameter Optimization
-     ↓
-Explainable AI (XAI) Interpretation
-     ↓
-Functional & Pathway Enrichment Analysis
-     ↓
-Biological Insight and Hypothesis Generation
+* **Data normalization & QC** – class `Normalizer` supports DESeq2‑style size‑factor scaling, TMM, CLR, log/variance‑stabilizing transforms, and custom functions.
+* **Feature selection** – class `FeatureSelector` offers statistical tests, variance filters, L1/ElasticNet, tree‑based importance, RFE, and SHAP‑driven pruning.
+* **Dimensionality reduction** – class `Reducer` unifies PCA, ICA, t‑SNE, UMAP, autoencoders, and VAEs with identical `.fit_transform()` signatures.
+* **Clustering & network analysis** – class `Clusterer` implements K‑means, hierarchical, DBSCAN, Gaussian Mixture, spe
+ctral, and WGCNA wrappers.
+* **Supervised learning** – class `Classifier`/`Regressor` abstracts scikit‑learn estimators, XGBoost/LightGBM, and custom PyTorch/Keras models in one API.
+* **Model evaluation & tuning** – class `Evaluator` automates CV splits, Optuna/Bayesian hyper‑opt, metric dashboards, and permutation importance.
+* **Explainable AI** – helpers for SHAP, LIME, attention heat‑maps, feature attribution plots.
+* **Biological interpretation** – built‑ins for GO/KEGG/Reactome enrichment, GSEA, and pathway plotting.
 
+### Generalized Pipeline (Mermaid Diagram)
+```mermaid
+flowchart TD
+    A[Raw Data\n(samples × features)] --> B[Normalization & Preprocessing]
+    B --> C[Feature Selection]
+    C --> D[Dimensionality Reduction]
+    D --> E[Clustering]
+    D --> F[Supervised Analysis]
+    E --> G[Unsupervised Interpretation]
+    F --> H[Model Evaluation & Optimization]
+    H --> I[Explainable AI]
+    I --> J[Functional & Pathway Enrichment]
+    J --> K[Biological Insight & Hypothesis]
+```
 
 Generalized Pipeline Summary: 
 A universal ML/DL pipeline for various biomedical data (RNA-seq, ChIP-seq, metagenomics, WGAS/eQTL)
